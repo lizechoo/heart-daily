@@ -10,7 +10,7 @@
 <meta name="description" content="A practical daily-use card for managing Kawasaki disease coronary aneurysms. Not medical advice.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&amp;family=Raleway:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#F2FCFD; --card:#FFFFFF;
@@ -43,7 +43,7 @@
   .nav{max-width:var(--maxw);margin:0 auto;display:flex;gap:.4rem;overflow-x:auto;
     padding:.55rem 1rem;scrollbar-width:none}
   .nav::-webkit-scrollbar{display:none}
-  .nav a{flex:0 0 auto;font-size:.82rem;font-weight:600;color:var(--soft);
+  .nav a{display:flex;align-items:center;flex:0 0 auto;min-height:44px;font-size:.82rem;font-weight:600;color:var(--soft);
     text-decoration:none;padding:.4rem .7rem;border-radius:var(--pill);
     border:1px solid var(--line);background:var(--card)}
   .nav a:hover{color:var(--primary);border-color:var(--primary-2)}
@@ -58,7 +58,8 @@
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
     padding:1.15rem 1.15rem;margin:1rem 0;box-shadow:var(--shadow);scroll-margin-top:4.6rem}
   .card>h2{font-size:1.18rem;display:flex;align-items:center;gap:.55rem;margin-bottom:.7rem}
-  .card>h2 .ico{flex:0 0 auto;width:26px;height:26px;color:var(--primary)}
+  .card>h2 .ico{flex:0 0 auto;flex-shrink:0;width:26px;height:26px;color:var(--primary)}
+  .card>h2 .h2-text{min-width:0}
   .card h3{font-size:.98rem;font-family:"Raleway",sans-serif;font-weight:700;
     color:var(--primary);margin:1rem 0 .45rem;text-transform:uppercase;letter-spacing:.03em;font-size:.78rem}
   .lead{color:var(--soft);font-size:.95rem;margin-bottom:.4rem}
@@ -68,7 +69,8 @@
   li::marker{color:var(--primary-2)}
   .clean{list-style:none;padding:0;margin:.3rem 0}
   .clean li{display:flex;gap:.55rem;align-items:flex-start;margin:.45rem 0}
-  .clean li .dot{flex:0 0 auto;width:18px;height:18px;margin-top:.18rem;color:var(--green)}
+  .clean li .dot{flex:0 0 auto;flex-shrink:0;width:18px;height:18px;margin-top:.18rem;color:var(--green)}
+  .clean li>span{min-width:0}
   strong{font-weight:700}
 
   /* emergency */
@@ -79,16 +81,19 @@
   @media(min-width:30rem){.emerg .signs{grid-template-columns:1fr 1fr}}
   .emerg .signs li{display:flex;gap:.5rem;align-items:flex-start;font-weight:600;
     background:#fff;border:1px solid var(--red-line);border-radius:var(--radius-sm);padding:.55rem .65rem;margin:0}
-  .emerg .signs li svg{flex:0 0 auto;width:18px;height:18px;color:var(--red);margin-top:.15rem}
+  .emerg .signs li svg{flex:0 0 auto;flex-shrink:0;width:18px;height:18px;color:var(--red);margin-top:.15rem}
+  .emerg .signs li .sign-text{min-width:0}
   .call{display:inline-flex;align-items:center;gap:.5rem;background:var(--red);color:#fff;
-    font-weight:700;text-decoration:none;padding:.7rem 1.1rem;border-radius:var(--pill);font-size:1.05rem;margin:.2rem 0}
+    max-width:100%;min-height:44px;font-weight:700;text-decoration:none;padding:.7rem 1.1rem;border-radius:var(--pill);font-size:1.05rem;margin:.2rem 0}
+  .call svg{flex:0 0 auto;flex-shrink:0}
+  .call .call-text{min-width:0}
   .say{background:#fff;border:1px dashed var(--red-line);border-radius:var(--radius-sm);
     padding:.7rem .8rem;margin:.6rem 0 0;font-size:.95rem}
   .say b{color:var(--red)}
 
   /* chips / tags */
   .chips{display:flex;flex-wrap:wrap;gap:.4rem;margin:.4rem 0 .6rem}
-  .chip{font-size:.85rem;font-weight:600;padding:.34rem .7rem;border-radius:var(--pill);
+  .chip{max-width:100%;overflow-wrap:anywhere;font-size:.85rem;font-weight:600;padding:.34rem .7rem;border-radius:var(--pill);
     border:1px solid var(--line);background:var(--tint);color:var(--ink)}
   .chip.ok{background:var(--green-bg);border-color:var(--green-line);color:var(--green)}
   .chip.no{background:var(--red-bg);border-color:var(--red-line);color:var(--red)}
@@ -103,7 +108,8 @@
   .tl .row b{display:flex;align-items:center;gap:.45rem;font-size:.95rem}
   .tl .row.g b{color:var(--green)} .tl .row.y b{color:var(--amber)} .tl .row.r b{color:var(--red)}
   .tl .row span{display:block;margin-top:.25rem;font-size:.9rem;color:var(--soft)}
-  .led{width:11px;height:11px;border-radius:50%;flex:0 0 auto}
+  .led{width:11px;height:11px;border-radius:50%;flex:0 0 auto;flex-shrink:0}
+  .tl .row b .tl-text{min-width:0;margin-top:0;color:inherit}
   .led.g{background:var(--green)} .led.y{background:var(--amber)} .led.r{background:var(--red)}
 
   /* daily checklist */
@@ -112,11 +118,20 @@
   .check label{display:flex;gap:.7rem;align-items:flex-start;cursor:pointer;
     padding:.6rem .2rem;border-bottom:1px solid var(--line-soft)}
   .check li:last-child label{border-bottom:none}
-  .check input{flex:0 0 auto;width:22px;height:22px;margin-top:.1rem;accent-color:var(--green);cursor:pointer}
+  .check input{-webkit-appearance:none;appearance:none;position:relative;flex:0 0 auto;flex-shrink:0;
+    width:44px;height:44px;min-width:44px;min-height:44px;margin:-.55rem 0;cursor:pointer;border:0;
+    border-radius:8px;background:transparent}
+  .check input::before{content:"";position:absolute;left:11px;top:11px;width:22px;height:22px;
+    border:2px solid var(--green);border-radius:5px;background:#fff}
+  .check input::after{content:"";position:absolute;left:19px;top:16px;width:7px;height:12px;
+    border:solid #fff;border-width:0 3px 3px 0;opacity:0;transform:rotate(45deg)}
+  .check input:checked::before{background:var(--green);border-color:var(--green)}
+  .check input:checked::after{opacity:1}
+  .check .txt{min-width:0}
   .check .t{font-weight:600}
   .check .s{display:block;font-weight:400;font-size:.86rem;color:var(--faint)}
   .check input:checked + .txt .t{color:var(--faint);text-decoration:line-through}
-  .reset{margin-top:.6rem;font-size:.8rem;background:none;border:1px solid var(--line);
+  .reset{min-height:44px;margin-top:.6rem;font-size:.8rem;background:none;border:1px solid var(--line);
     color:var(--soft);border-radius:var(--pill);padding:.35rem .8rem;cursor:pointer}
   .reset:hover{border-color:var(--primary-2);color:var(--primary)}
 
@@ -134,14 +149,14 @@
   details summary::after{content:"+";font-size:1.25rem;color:var(--faint)}
   details[open] summary::after{content:"\2013"}
   details .body{padding:0 .85rem .85rem}
-  table{width:100%;border-collapse:collapse;font-size:.86rem;margin-top:.3rem}
-  th,td{text-align:left;padding:.45rem .4rem;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  table{width:100%;table-layout:fixed;border-collapse:collapse;font-size:.86rem;margin-top:.3rem}
+  th,td{overflow-wrap:anywhere;text-align:left;padding:.45rem .4rem;border-bottom:1px solid var(--line-soft);vertical-align:top}
   th{color:var(--faint);font-weight:600;font-size:.74rem;text-transform:uppercase;letter-spacing:.03em}
   td b{color:var(--ink)}
 
   .mini{font-size:.85rem;color:var(--faint)}
   footer{max-width:var(--maxw);margin:0 auto;padding:1rem 1rem 3rem;font-size:.82rem;color:var(--faint);text-align:center}
-  footer a{color:var(--primary)}
+  footer a{display:inline-flex;align-items:center;min-height:44px;color:var(--primary)}
   .helping{border-color:var(--primary-2);background:linear-gradient(180deg,#fff, var(--tint))}
   .helping>h2{color:var(--primary)}
 </style>
@@ -171,29 +186,29 @@
 
   <!-- EMERGENCY -->
   <section id="emergency" class="card emerg">
-    <h2><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>Call 911 if any of these</h2>
+    <h2><svg class="ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><span class="h2-text">Call 911 if any of these</span></h2>
     <p class="lead">A clot can form in an aneurysm with no warning, even when I feel fine. Do not drive me. Do not wait it out.</p>
     <ul class="signs">
-      <li><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>Chest pain, pressure or tightness</li>
-      <li><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>Pain spreading to arm, jaw, neck or back</li>
-      <li><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>Sudden shortness of breath</li>
-      <li><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>Cold sweat, looking pale</li>
-      <li><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>Nausea with any of the above</li>
-      <li><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>Feeling faint or about to pass out</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg><span class="sign-text">Chest pain, pressure or tightness</span></li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg><span class="sign-text">Pain spreading to arm, jaw, neck or back</span></li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg><span class="sign-text">Sudden shortness of breath</span></li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg><span class="sign-text">Cold sweat, looking pale</span></li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg><span class="sign-text">Nausea with any of the above</span></li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg><span class="sign-text">Feeling faint or about to pass out</span></li>
     </ul>
-    <a class="call" href="tel:911"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call 911</a>
+    <a class="call" href="tel:911"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span class="call-text">Call 911</span></a>
     <div class="say"><b>Tell the paramedics, every time:</b> "I have Kawasaki disease with coronary artery aneurysms. My biggest is about 7&nbsp;mm in the left main / front (LAD) artery. Please do not place a regular-sized stent. My heart team is the ACHD clinic at Toronto General."</div>
     <p class="mini" style="margin-top:.6rem">I keep this on a wallet card and my phone medical ID.</p>
   </section>
 
   <!-- SNAPSHOT -->
   <section id="snapshot" class="card">
-    <h2><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>My heart in 30 seconds</h2>
+    <h2><svg class="ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg><span class="h2-text">My heart in 30 seconds</span></h2>
     <ul class="clean">
-      <li><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Had <strong>Kawasaki disease as a kid</strong> (age 2, again at 7). It left <strong>aneurysms</strong> (widened spots) in my heart arteries.</span></li>
-      <li><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Biggest: <strong>~7&nbsp;mm in the left main / front artery</strong>, with 50% narrowing. Smaller ones in the right artery. <strong>No clot</strong> on my 2025 scan.</span></li>
-      <li><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Fitness and pump are <strong>strong</strong> (stress test low-risk). Two jobs now: <strong>stop clots</strong> and <strong>keep arteries calm</strong>.</span></li>
-      <li><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>My <strong>#1 open question</strong>: I am on aspirin alone for clots (couldn't tolerate the stronger blood thinners). Worth pushing my team on alternatives.</span></li>
+      <li><svg class="dot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Had <strong>Kawasaki disease as a kid</strong> (age 2, again at 7). It left <strong>aneurysms</strong> (widened spots) in my heart arteries.</span></li>
+      <li><svg class="dot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Biggest: <strong>~7&nbsp;mm in the left main / front artery</strong>, with 50% narrowing. Smaller ones in the right artery. <strong>No clot</strong> on my 2025 scan.</span></li>
+      <li><svg class="dot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Fitness and pump are <strong>strong</strong> (stress test low-risk). Two jobs now: <strong>stop clots</strong> and <strong>keep arteries calm</strong>.</span></li>
+      <li><svg class="dot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>My <strong>#1 open question</strong>: I am on aspirin alone for clots (couldn't tolerate the stronger blood thinners). Worth pushing my team on alternatives.</span></li>
     </ul>
     <details>
       <summary>Full numbers (for my aunt / any clinician)</summary>
@@ -223,7 +238,7 @@
 
   <!-- DAILY -->
   <section id="daily" class="card">
-    <h2><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Today's checklist</h2>
+    <h2><svg class="ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span class="h2-text">Today's checklist</span></h2>
     <p class="lead">Tick these off each day. Saved on this device only.</p>
     <ul class="check" id="dailyCheck">
       <li><label><input type="checkbox" data-k="asa"><span class="txt"><span class="t">Aspirin 81&nbsp;mg</span><span class="s">Never skip. This is my main clot protection.</span></span></label></li>
@@ -238,19 +253,19 @@
 
   <!-- MOVE -->
   <section id="move" class="card">
-    <h2><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/></svg>Moving safely</h2>
+    <h2><svg class="ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/></svg><span class="h2-text">Moving safely</span></h2>
     <p class="lead">Exercise protects me. A few things need a lower gear. Breathe out through every lift, never strain with held breath.</p>
     <div class="tl">
-      <div class="row g"><b><span class="led g"></span>Green &mdash; go</b><span>Brisk walks, easy cycling, swimming, rowing, zone-2 (can still talk).</span></div>
-      <div class="row y"><b><span class="led y"></span>Yellow &mdash; ask first</b><span>HIIT/sprints, heavier weights, competitive pickup sports.</span></div>
-      <div class="row r"><b><span class="led r"></span>Red &mdash; avoid</b><span>Contact sports, max lifts / breath-holding strain, all-out racing, sauna&nbsp;&rarr;&nbsp;cold-plunge, exercising dehydrated.</span></div>
+      <div class="row g"><b><span class="led g"></span><span class="tl-text">Green: go</span></b><span>Brisk walks, easy cycling, swimming, rowing, zone-2 (can still talk).</span></div>
+      <div class="row y"><b><span class="led y"></span><span class="tl-text">Yellow: ask first</span></b><span>HIIT/sprints, heavier weights, competitive pickup sports.</span></div>
+      <div class="row r"><b><span class="led r"></span><span class="tl-text">Red: avoid</span></b><span>Contact sports, max lifts / breath-holding strain, all-out racing, sauna&nbsp;&rarr;&nbsp;cold-plunge, exercising dehydrated.</span></div>
     </div>
     <p class="mini">Stop and rest for any chest pain, odd breathlessness, dizziness or cold sweat. If it doesn't pass in a minute or two, treat as the emergency list above.</p>
   </section>
 
   <!-- EAT -->
   <section id="eat" class="card">
-    <h2><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>Eating for my heart</h2>
+    <h2><svg class="ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg><span class="h2-text">Eating for my heart</span></h2>
     <p class="lead">Two goals, one plate: <strong>LDL as low as possible</strong> and <strong>reverse the prediabetes</strong> (A1c crept to 6.3%).</p>
     <h3>More of</h3>
     <div class="chips">
@@ -262,10 +277,10 @@
     </div>
     <h3>Best single wins</h3>
     <ul class="clean">
-      <li><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Cut sugar-sweetened drinks first. Biggest blood-sugar lever.</span></li>
-      <li><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Protein + fiber with any carbs. Walk after meals.</span></li>
+      <li><svg class="dot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Cut sugar-sweetened drinks first. Biggest blood-sugar lever.</span></li>
+      <li><svg class="dot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Protein + fiber with any carbs. Walk after meals.</span></li>
     </ul>
-    <div class="q priority"><b>Important caution:</b> I have thalassemia trait. <strong>Do not start iron pills without a blood test first</strong> &mdash; excess iron is harmful, and my small red cells are not from low iron.</div>
+    <div class="q priority"><b>Important caution:</b> I have thalassemia trait. <strong>Do not start iron pills without a blood test first</strong>: excess iron is harmful, and my small red cells are not from low iron.</div>
     <details>
       <summary>A simple sample day</summary>
       <div class="body">
@@ -282,18 +297,18 @@
 
   <!-- TRACK -->
   <section id="track" class="card">
-    <h2><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>Keeping track</h2>
+    <h2><svg class="ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg><span class="h2-text">Keeping track</span></h2>
     <ul class="clean">
-      <li><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Home:</strong> my ACHD clinic, <strong>Toronto General</strong>. They set my personal schedule.</span></li>
-      <li><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Usually:</strong> periodic stress test + CT/MR angiogram of the arteries + yearly bloods (cholesterol, A1c). Higher-risk spots can mean check-ins every 3&ndash;6 months.</span></li>
-      <li><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Watch the A1c:</strong> it's trending up. Bring it back down with food + walking.</span></li>
-      <li><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Sick with vomiting/diarrhea &rarr; hydrate hard; can't keep fluids down for hours &rarr; call my team.</span></li>
+      <li><svg class="dot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Home:</strong> my ACHD clinic, <strong>Toronto General</strong>. They set my personal schedule.</span></li>
+      <li><svg class="dot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Usually:</strong> periodic stress test + CT/MR angiogram of the arteries + yearly bloods (cholesterol, A1c). Higher-risk spots can mean check-ins every 3&ndash;6 months.</span></li>
+      <li><svg class="dot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Watch the A1c:</strong> it's trending up. Bring it back down with food + walking.</span></li>
+      <li><svg class="dot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Sick with vomiting/diarrhea &rarr; hydrate hard; can't keep fluids down for hours &rarr; call my team.</span></li>
     </ul>
   </section>
 
   <!-- ASK -->
   <section id="ask" class="card">
-    <h2><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg>Top questions for my cardiologist</h2>
+    <h2><svg class="ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg><span class="h2-text">Top questions for my cardiologist</span></h2>
     <div class="q priority"><b>1. Clot protection (ask first).</b> I'm on aspirin alone because warfarin and clopidogrel didn't agree with me. Given my ~7&nbsp;mm left-main aneurysm, is that still enough? Could a different blood thinner (a DOAC like apixaban) or antiplatelet (ticagrelor) work for me? Can we get my Z-score on record?</div>
     <div class="q"><b>2. Monitoring.</b> When's my next scan/stress test? What would mean I should come in sooner?</div>
     <div class="q"><b>3. Blood sugar.</b> A1c went 5.6 &rarr; 6.3 in 9 months. Plan beyond berberine? Should I see a dietitian? (Also: does my thalassemia trait change how A1c is read?)</div>
@@ -303,14 +318,14 @@
 
   <!-- HELPING -->
   <section id="helping" class="card helping">
-    <h2><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>If you're helping me</h2>
+    <h2><svg class="ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="h2-text">If you're helping me</span></h2>
     <p class="lead">For family who aren't medical. You don't need to remember the science. Just these:</p>
     <ul class="clean">
-      <li><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>If he has chest pain, can't breathe, goes pale or sweaty &rarr; call 911.</strong> Don't wait, don't drive him. Tell them he has Kawasaki disease with heart-artery aneurysms.</span></li>
-      <li><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>His daily aspirin is the big one.</strong> A gentle "did you take it?" actually helps.</span></li>
-      <li><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Encourage <strong>water</strong>, a <strong>walk after dinner</strong>, and <strong>no smoking</strong> around him.</span></li>
-      <li><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Know where his <strong>wallet med card</strong> is, and that his heart team is <strong>Toronto General ACHD</strong>.</span></li>
-      <li><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>A good stress test does <strong>not</strong> mean the clot risk is gone. Both matter. Stay alert even when he seems fine.</span></li>
+      <li><svg class="dot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>If he has chest pain, can't breathe, goes pale or sweaty &rarr; call 911.</strong> Don't wait, don't drive him. Tell them he has Kawasaki disease with heart-artery aneurysms.</span></li>
+      <li><svg class="dot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>His daily aspirin is the big one.</strong> A gentle "did you take it?" actually helps.</span></li>
+      <li><svg class="dot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Encourage <strong>water</strong>, a <strong>walk after dinner</strong>, and <strong>no smoking</strong> around him.</span></li>
+      <li><svg class="dot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Know where his <strong>wallet med card</strong> is, and that his heart team is <strong>Toronto General ACHD</strong>.</span></li>
+      <li><svg class="dot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>A good stress test does <strong>not</strong> mean the clot risk is gone. Both matter. Stay alert even when he seems fine.</span></li>
     </ul>
   </section>
 
